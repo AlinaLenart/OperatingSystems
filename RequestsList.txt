@@ -1,0 +1,40 @@
+ID: 1
+Duration: 3
+ArrivalTime: 9
+
+ID: 2
+Duration: 7
+ArrivalTime: 6
+
+ID: 3
+Duration: 6
+ArrivalTime: 18
+
+ID: 4
+Duration: 7
+ArrivalTime: 2
+
+ID: 5
+Duration: 10
+ArrivalTime: 5
+
+ID: 6
+Duration: 4
+ArrivalTime: 1
+
+ID: 7
+Duration: 3
+ArrivalTime: 9
+
+ID: 8
+Duration: 5
+ArrivalTime: 10
+
+ID: 9
+Duration: 9
+ArrivalTime: 16
+
+ID: 10
+Duration: 8
+ArrivalTime: 19
+
