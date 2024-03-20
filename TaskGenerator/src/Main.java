@@ -5,14 +5,14 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        int n = 10;
+        int n = 1000;
         String fileName = "RequestsList.txt";
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
             for (int i = 1; i <= n; i++) {
 
-                Request request = new Request(10, 20);
+                Request request = new Request(50, 4000);
                 writer.write(request.toString(i));
 
             }

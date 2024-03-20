@@ -14,8 +14,8 @@ public class Request {
     public String toString(int id) {
         return "ID: " + id +
                 "\nDuration: " + duration +
-                "\nArrivalTime: " + arrivalTime +
-                "\n\n";
+                "\nArrival Time: " + arrivalTime +
+                "\n";
     }
 
     public int getDuration() {

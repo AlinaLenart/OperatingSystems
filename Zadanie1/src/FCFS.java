@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class FCFS {
-     public static void simulationFCFS (ArrayList<Request> requestsList) {
+     public Result simulationFCFS (ArrayList<Request> requestsList) {
 
          //TODO wydziel do oddzielnej klasy
          ArrayList<Request> copyRequestList = new ArrayList<>();
@@ -18,19 +18,35 @@ public class FCFS {
                  copyRequestList.add(copyRequest);
          }
 
-         Collections.sort(copyRequestList, new Comparator<Request>() {
-             @Override
-             public int compare(Request r1, Request r2) {
-                 return Integer.compare(r1.getArrivalTime(), r2.getArrivalTime());
-             }
-         });
+         Collections.sort(copyRequestList, Comparator.comparingInt(Request::getArrivalTime)
+                 .thenComparingInt(Request::getDuration));
+
+
+         int totalWaitingTime = 0;
+         int longestWaitingTime = 0;
+         int totalSwitches = requestsList.size();
+         int starvedTasksCount = 0;
+
+         int currentTime = 0;
 
          for (Request request : copyRequestList) {
-             System.out.println(request);
+
+             request.setWaitingTime(Math.max(0, currentTime - request.getArrivalTime()));
+             totalWaitingTime += request.getWaitingTime();
+             longestWaitingTime = Math.max(longestWaitingTime, request.getWaitingTime());
+
+             if (request.getWaitingTime() > 30) {
+                 starvedTasksCount++;
+             }
+
+             currentTime += request.getDuration();
+
+
          }
 
+         int averageWaitingTime = totalWaitingTime / requestsList.size();
 
-
+         return new Result("FCFS", averageWaitingTime, longestWaitingTime, totalSwitches, starvedTasksCount);
 
 
 

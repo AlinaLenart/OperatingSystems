@@ -24,6 +24,10 @@ public class Request {
         return arrivalTime;
     }
 
+    public int getWaitingTime() {
+        return waitingTime;
+    }
+
     public void setWaitingTime(int time) {
         waitingTime = time;
     }
