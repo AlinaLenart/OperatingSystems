@@ -31,6 +31,13 @@ public class FCFS {
 
          for (Request request : copyRequestList) {
 
+             if (currentTime < request.getArrivalTime()){
+                 currentTime = request.getArrivalTime() + request.getDuration();
+             }
+             else {
+                 currentTime += request.getDuration();
+             } //TODO przetestuj to
+
              request.setWaitingTime(Math.max(0, currentTime - request.getArrivalTime()));
              totalWaitingTime += request.getWaitingTime();
              longestWaitingTime = Math.max(longestWaitingTime, request.getWaitingTime());
@@ -38,8 +45,6 @@ public class FCFS {
              if (request.getWaitingTime() > 30) {
                  starvedTasksCount++;
              }
-
-             currentTime += request.getDuration();
 
 
          }

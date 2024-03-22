@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class RR {
-    public Result simulationRR (ArrayList<Request> requestsList, int switchTime) {
+    private int currentTime;
+    public RR (){
+        this.currentTime = 0;
+    }
+    public Result simulationRR (ArrayList<Request> requestsList, int quantum) {
 
         //TODO wydziel do oddzielnej klasy
         ArrayList<Request> copyRequestList = new ArrayList<>();
@@ -26,52 +31,83 @@ public class RR {
             System.out.println(request);
         }
 
+        //utworzenie listy z taskami o najmniejszym arrivalTime
+        //najpierw wykonuje pierwszy - przez kwant czasu
+        //patrzy czy jakies nie doszly, wtedy dodaje je do listy
+        //po tym usuwa go z poczatku i bierze go na koniec
+        //potem kolejny w kolejce task  - przez kwant czasu - powtorka
+
         int totalWaitingTime = 0;
         int longestWaitingTime = 0;
         int totalSwitches = requestsList.size();
         int starvedTasksCount = 0;
+        boolean addPrevious = false;
+        Request first = new Request();
+        ArrayList<Request> activeRequests = new ArrayList<>();
 
-        int currentTime = 0;
+        while (!copyRequestList.isEmpty() || !activeRequests.isEmpty()){
 
+            Iterator<Request> iterator = copyRequestList.iterator();
 
-        while (!copyRequestList.isEmpty()){
-
-            Request first = copyRequestList.get(0);
-            for (Request req : copyRequestList) {
-
+            while (iterator.hasNext()) {
+                Request req = iterator.next();
                 if (req.getArrivalTime() <= currentTime) {
-                    first = req;
+                    activeRequests.add(req);
+                    iterator.remove(); // iterator bo na forEach nie mozna usuwac
                 }
             }
 
-            first.setWaitingTime(Math.max(0, currentTime - first.getArrivalTime()));
-            totalWaitingTime += first.getWaitingTime();
-            longestWaitingTime = Math.max(longestWaitingTime, first.getWaitingTime());
-
-            if (first.getWaitingTime() > 30) {
-                starvedTasksCount++;
+            if (addPrevious) {
+                activeRequests.add(first);
             }
 
-            if (currentTime < first.getArrivalTime()){
-                currentTime = first.getArrivalTime() + first.getDuration();
+            if(!activeRequests.isEmpty()){
+
+                first = activeRequests.getFirst();
+
+                if (currentTime < first.getArrivalTime()) {
+
+                    currentTime = first.getArrivalTime() + quantum;
+                }
+                else {
+
+                    currentTime += quantum;
+                }
+
+                first.setDuration(quantum);
+
+                activeRequests.removeFirst();
+
+                if (first.getDuration() <= 0) {
+
+                    first.setWaitingTime(Math.max(0, currentTime + first.getDuration() - first.getArrivalTime())); //currentTime jest wtedy kiedy KONCZY robic, czyli najpierw zmiana o quantum
+                    totalWaitingTime += first.getWaitingTime();
+                    longestWaitingTime = Math.max(longestWaitingTime, first.getWaitingTime());
+
+                    if (first.getWaitingTime() > 30) {
+                        starvedTasksCount++;
+                    }
+                    addPrevious = false;
+                    System.out.println("Current time: "+ currentTime +" Wykonane: "+ first + " waiting time: "+ first.getWaitingTime());
+                }
+
+                else {
+                    addPrevious = true;
+                    first.addSwitch();
+                    totalSwitches++;
+                }
+
             }
             else {
-                currentTime += first.getDuration();
+                currentTime++;
             }
 
-            System.out.println("Wykonane: "+ first + " waiting time: "+first.getWaitingTime());
-
-            if (first.getDuration() < 1) {
-                copyRequestList.remove(first);
-            }
-            else {
-                totalSwitches++;
-            }
 
         }
 
+
         int averageWaitingTime = totalWaitingTime / requestsList.size();
-        return new Result("SJF", averageWaitingTime, longestWaitingTime, totalSwitches, starvedTasksCount);
+        return new Result("RR", averageWaitingTime, longestWaitingTime, totalSwitches, starvedTasksCount);
 
 
 

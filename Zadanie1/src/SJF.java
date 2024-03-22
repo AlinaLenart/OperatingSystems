@@ -23,10 +23,6 @@ public class SJF {
                 .thenComparingInt(Request::getDuration));
 
 
-        for (Request request : copyRequestList){
-            System.out.println(request);
-        }
-
         int totalWaitingTime = 0;
         int longestWaitingTime = 0;
         int totalSwitches = requestsList.size();
@@ -36,12 +32,21 @@ public class SJF {
 
         while (!copyRequestList.isEmpty()){
 
-            Request first = copyRequestList.get(0);
+            Request first = copyRequestList.getFirst();
+
             for (Request req : copyRequestList) {
 
                 if (req.getArrivalTime() <= currentTime && first.getDuration() > req.getDuration()) {
                     first = req;
                 }
+            }
+
+            if (currentTime < first.getArrivalTime()){
+
+                currentTime = first.getArrivalTime() + first.getDuration();
+            }
+            else {
+                currentTime += first.getDuration();
             }
 
             first.setWaitingTime(Math.max(0, currentTime - first.getArrivalTime()));
@@ -52,14 +57,8 @@ public class SJF {
                 starvedTasksCount++;
             }
 
-            if (currentTime < first.getArrivalTime()){
-                currentTime = first.getArrivalTime() + first.getDuration();
-            }
-            else {
-                currentTime += first.getDuration();
-            }
 
-            System.out.println("Wykonane: "+ first + " waiting time: "+first.getWaitingTime());
+            System.out.println("Wykonane: "+ first + " waiting time: "+ first.getWaitingTime());
             copyRequestList.remove(first);
 
         }

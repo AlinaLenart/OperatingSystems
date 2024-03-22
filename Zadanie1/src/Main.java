@@ -14,11 +14,11 @@ public class Main {
         //TODO opcja wpisania ktory algorytm uruchomic
 //        Scanner scanner = new Scanner(System.in);
 
-        FCFS fcfs = new FCFS();
-        System.out.println(fcfs.simulationFCFS(requests));
-
-        SJF sjf = new SJF();
-        System.out.println(sjf.simulationSJF(requests));
+//        FCFS fcfs = new FCFS();
+//        System.out.println(fcfs.simulationFCFS(requests));
+//
+//        SJF sjf = new SJF();
+//        System.out.println(sjf.simulationSJF(requests));
 
         RR rr = new RR();
         System.out.println(rr.simulationRR(requests, 5));
