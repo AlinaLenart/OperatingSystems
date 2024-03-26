@@ -4,9 +4,17 @@ import java.util.Comparator;
 import java.util.List;
 
 public class SJF {
-    public Result simulationSJF (ArrayList<Request> requestsList) {
+    private int starvedTime;
+    private ArrayList<Request> requestsList;
+    public SJF(int starvedTime, ArrayList<Request> requestsList){
+        if (requestsList == null) {
+            throw new NullPointerException();
+        }
+        this.starvedTime = starvedTime;
+        this.requestsList = requestsList;
+    }
+    public Result simulationSJF () {
 
-        //TODO wydziel do oddzielnej klasy
         ArrayList<Request> copyRequestList = new ArrayList<>();
 
         for (Request request : requestsList) {
@@ -52,14 +60,12 @@ public class SJF {
             first.setWaitingTime(Math.max(0, currentTime - first.getArrivalTime()));
             totalWaitingTime += first.getWaitingTime();
             longestWaitingTime = Math.max(longestWaitingTime, first.getWaitingTime());
+            copyRequestList.remove(first);
 
-            if (first.getWaitingTime() > 30) {
+            if (first.getWaitingTime() > starvedTime) {
                 starvedTasksCount++;
             }
 
-
-            System.out.println("Wykonane: "+ first + " waiting time: "+ first.getWaitingTime());
-            copyRequestList.remove(first);
 
         }
 

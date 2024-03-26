@@ -1,30 +1,300 @@
 ID: 1
-Duration: 8
-Arrival Time: 14
+Duration: 15
+Arrival Time: 796
 ID: 2
-Duration: 10
-Arrival Time: 14
+Duration: 14
+Arrival Time: 369
 ID: 3
-Duration: 1
-Arrival Time: 5
+Duration: 13
+Arrival Time: 208
 ID: 4
-Duration: 10
-Arrival Time: 4
+Duration: 2
+Arrival Time: 61
 ID: 5
-Duration: 7
-Arrival Time: 14
+Duration: 17
+Arrival Time: 277
 ID: 6
-Duration: 8
-Arrival Time: 7
+Duration: 47
+Arrival Time: 692
 ID: 7
-Duration: 5
-Arrival Time: 10
+Duration: 8
+Arrival Time: 301
 ID: 8
-Duration: 10
-Arrival Time: 11
+Duration: 29
+Arrival Time: 293
 ID: 9
-Duration: 5
-Arrival Time: 1
+Duration: 49
+Arrival Time: 712
 ID: 10
+Duration: 14
+Arrival Time: 743
+ID: 11
+Duration: 26
+Arrival Time: 936
+ID: 12
+Duration: 38
+Arrival Time: 113
+ID: 13
+Duration: 1
+Arrival Time: 487
+ID: 14
+Duration: 26
+Arrival Time: 705
+ID: 15
+Duration: 42
+Arrival Time: 614
+ID: 16
+Duration: 45
+Arrival Time: 184
+ID: 17
+Duration: 25
+Arrival Time: 467
+ID: 18
+Duration: 43
+Arrival Time: 800
+ID: 19
+Duration: 27
+Arrival Time: 2
+ID: 20
+Duration: 38
+Arrival Time: 543
+ID: 21
+Duration: 29
+Arrival Time: 454
+ID: 22
+Duration: 36
+Arrival Time: 267
+ID: 23
+Duration: 23
+Arrival Time: 402
+ID: 24
+Duration: 18
+Arrival Time: 63
+ID: 25
+Duration: 31
+Arrival Time: 962
+ID: 26
+Duration: 4
+Arrival Time: 850
+ID: 27
+Duration: 23
+Arrival Time: 780
+ID: 28
+Duration: 47
+Arrival Time: 771
+ID: 29
+Duration: 27
+Arrival Time: 474
+ID: 30
+Duration: 41
+Arrival Time: 869
+ID: 31
+Duration: 38
+Arrival Time: 662
+ID: 32
+Duration: 31
+Arrival Time: 822
+ID: 33
+Duration: 35
+Arrival Time: 32
+ID: 34
+Duration: 29
+Arrival Time: 504
+ID: 35
+Duration: 15
+Arrival Time: 522
+ID: 36
+Duration: 20
+Arrival Time: 575
+ID: 37
+Duration: 31
+Arrival Time: 307
+ID: 38
+Duration: 26
+Arrival Time: 366
+ID: 39
+Duration: 32
+Arrival Time: 561
+ID: 40
+Duration: 13
+Arrival Time: 168
+ID: 41
+Duration: 20
+Arrival Time: 781
+ID: 42
+Duration: 23
+Arrival Time: 938
+ID: 43
+Duration: 14
+Arrival Time: 708
+ID: 44
+Duration: 31
+Arrival Time: 758
+ID: 45
 Duration: 6
-Arrival Time: 8
+Arrival Time: 666
+ID: 46
+Duration: 11
+Arrival Time: 703
+ID: 47
+Duration: 16
+Arrival Time: 777
+ID: 48
+Duration: 22
+Arrival Time: 695
+ID: 49
+Duration: 19
+Arrival Time: 49
+ID: 50
+Duration: 44
+Arrival Time: 264
+ID: 51
+Duration: 30
+Arrival Time: 994
+ID: 52
+Duration: 15
+Arrival Time: 587
+ID: 53
+Duration: 23
+Arrival Time: 746
+ID: 54
+Duration: 7
+Arrival Time: 888
+ID: 55
+Duration: 24
+Arrival Time: 703
+ID: 56
+Duration: 43
+Arrival Time: 317
+ID: 57
+Duration: 35
+Arrival Time: 139
+ID: 58
+Duration: 11
+Arrival Time: 994
+ID: 59
+Duration: 47
+Arrival Time: 611
+ID: 60
+Duration: 24
+Arrival Time: 187
+ID: 61
+Duration: 4
+Arrival Time: 163
+ID: 62
+Duration: 26
+Arrival Time: 209
+ID: 63
+Duration: 26
+Arrival Time: 696
+ID: 64
+Duration: 42
+Arrival Time: 533
+ID: 65
+Duration: 41
+Arrival Time: 180
+ID: 66
+Duration: 45
+Arrival Time: 644
+ID: 67
+Duration: 13
+Arrival Time: 690
+ID: 68
+Duration: 34
+Arrival Time: 622
+ID: 69
+Duration: 21
+Arrival Time: 469
+ID: 70
+Duration: 2
+Arrival Time: 289
+ID: 71
+Duration: 38
+Arrival Time: 734
+ID: 72
+Duration: 18
+Arrival Time: 994
+ID: 73
+Duration: 30
+Arrival Time: 963
+ID: 74
+Duration: 39
+Arrival Time: 786
+ID: 75
+Duration: 4
+Arrival Time: 678
+ID: 76
+Duration: 49
+Arrival Time: 909
+ID: 77
+Duration: 1
+Arrival Time: 472
+ID: 78
+Duration: 39
+Arrival Time: 920
+ID: 79
+Duration: 28
+Arrival Time: 706
+ID: 80
+Duration: 28
+Arrival Time: 598
+ID: 81
+Duration: 24
+Arrival Time: 707
+ID: 82
+Duration: 29
+Arrival Time: 95
+ID: 83
+Duration: 14
+Arrival Time: 175
+ID: 84
+Duration: 28
+Arrival Time: 134
+ID: 85
+Duration: 8
+Arrival Time: 740
+ID: 86
+Duration: 10
+Arrival Time: 489
+ID: 87
+Duration: 13
+Arrival Time: 571
+ID: 88
+Duration: 43
+Arrival Time: 645
+ID: 89
+Duration: 5
+Arrival Time: 468
+ID: 90
+Duration: 42
+Arrival Time: 803
+ID: 91
+Duration: 36
+Arrival Time: 880
+ID: 92
+Duration: 33
+Arrival Time: 817
+ID: 93
+Duration: 39
+Arrival Time: 183
+ID: 94
+Duration: 30
+Arrival Time: 543
+ID: 95
+Duration: 19
+Arrival Time: 944
+ID: 96
+Duration: 27
+Arrival Time: 821
+ID: 97
+Duration: 25
+Arrival Time: 11
+ID: 98
+Duration: 37
+Arrival Time: 851
+ID: 99
+Duration: 7
+Arrival Time: 757
+ID: 100
+Duration: 41
+Arrival Time: 232

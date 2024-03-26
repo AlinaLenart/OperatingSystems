@@ -11,20 +11,50 @@ public class Main {
         String fileName = "RequestsList.txt";
         ArrayList<Request> requests = readRequestsFile(fileName);
 
-        //TODO opcja wpisania ktory algorytm uruchomic
-//        Scanner scanner = new Scanner(System.in);
 
-//        FCFS fcfs = new FCFS();
-//        System.out.println(fcfs.simulationFCFS(requests));
-//
-//        SJF sjf = new SJF();
-//        System.out.println(sjf.simulationSJF(requests));
+        int starvedTime = 150;
 
-        RR rr = new RR();
-        System.out.println(rr.simulationRR(requests, 5));
+        consoleMenu(requests, starvedTime);
+
 
     }
 
+
+    private static void consoleMenu(ArrayList<Request> requests, int starvedTime){
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
+        while (!exit){
+            System.out.println("\n   Choose simulation type:   ");
+            System.out.printf("[1] FCFS \n[2] SJF \n[3] RR\n");
+            int choosenType = scanner.nextInt();
+            scanner.nextLine();
+            switch(choosenType) {
+                case 1:
+                    FCFS fcfs = new FCFS(starvedTime, requests);
+                    System.out.println(fcfs.simulationFCFS());
+                    break;
+                case 2:
+                    SJF sjf = new SJF(starvedTime, requests);
+                    System.out.println(sjf.simulationSJF());
+                    break;
+                case 3:
+                    System.out.println("Give quantum: ");
+                    int quantum = scanner.nextInt();
+                    scanner.nextLine();
+                    RR rr = new RR(starvedTime, requests, quantum);
+                    System.out.println(rr.simulationRR());
+                    break;
+                default:
+                    exit = true;
+                    break;
+            }
+
+        }
+
+
+
+
+    }
     private static ArrayList<Request> readRequestsFile(String fileName) {
 
         ArrayList<Request> requests = new ArrayList<>();

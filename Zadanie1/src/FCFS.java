@@ -3,9 +3,17 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class FCFS {
-     public Result simulationFCFS (ArrayList<Request> requestsList) {
+    private int starvedTime;
+    private ArrayList<Request> requestsList;
+    public FCFS (int starvedTime, ArrayList<Request> requestsList){
+        if (requestsList == null) {
+            throw new NullPointerException();
+        }
+        this.requestsList = requestsList;
+        this.starvedTime = starvedTime;
+    }
+     public Result simulationFCFS () {
 
-         //TODO wydziel do oddzielnej klasy
          ArrayList<Request> copyRequestList = new ArrayList<>();
 
          for (Request request : requestsList) {
@@ -36,13 +44,13 @@ public class FCFS {
              }
              else {
                  currentTime += request.getDuration();
-             } //TODO przetestuj to
+             }
 
              request.setWaitingTime(Math.max(0, currentTime - request.getArrivalTime()));
              totalWaitingTime += request.getWaitingTime();
              longestWaitingTime = Math.max(longestWaitingTime, request.getWaitingTime());
 
-             if (request.getWaitingTime() > 30) {
+             if (request.getWaitingTime() > starvedTime) {
                  starvedTasksCount++;
              }
 

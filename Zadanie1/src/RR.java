@@ -5,12 +5,20 @@ import java.util.Iterator;
 
 public class RR {
     private int currentTime;
-    public RR (){
+    private int starvedTime;
+    private ArrayList<Request> requestsList;
+    private int quantum;
+    public RR (int starvedTime, ArrayList<Request> requestsList, int quantum){
+        if (requestsList == null) {
+            throw new NullPointerException();
+        }
+        this.quantum = quantum;
+        this.requestsList = requestsList;
+        this.starvedTime = starvedTime;
         this.currentTime = 0;
     }
-    public Result simulationRR (ArrayList<Request> requestsList, int quantum) {
+    public Result simulationRR () {
 
-        //TODO wydziel do oddzielnej klasy
         ArrayList<Request> copyRequestList = new ArrayList<>();
 
         for (Request request : requestsList) {
@@ -27,9 +35,6 @@ public class RR {
                 .thenComparingInt(Request::getDuration));
 
 
-        for (Request request : copyRequestList){
-            System.out.println(request);
-        }
 
         //utworzenie listy z taskami o najmniejszym arrivalTime
         //najpierw wykonuje pierwszy - przez kwant czasu
@@ -58,7 +63,7 @@ public class RR {
             }
 
             if (addPrevious) {
-                activeRequests.add(first);
+                activeRequests.add(first); //na koniec aktywnych dodaje przed chwila procesowany task
             }
 
             if(!activeRequests.isEmpty()){
@@ -71,7 +76,7 @@ public class RR {
                 }
                 else {
 
-                    currentTime += quantum;
+                    currentTime += quantum; //kwant czasu jest niepodzielny, jesli pozostale duration jest mniejsze to czas na proces i tak quantum
                 }
 
                 first.setDuration(quantum);
@@ -84,11 +89,10 @@ public class RR {
                     totalWaitingTime += first.getWaitingTime();
                     longestWaitingTime = Math.max(longestWaitingTime, first.getWaitingTime());
 
-                    if (first.getWaitingTime() > 30) {
+                    if (first.getWaitingTime() > starvedTime) {
                         starvedTasksCount++;
                     }
                     addPrevious = false;
-                    System.out.println("Current time: "+ currentTime +" Wykonane: "+ first + " waiting time: "+ first.getWaitingTime());
                 }
 
                 else {

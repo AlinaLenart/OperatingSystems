@@ -37,7 +37,7 @@ public class Request {
 
     public void setDuration(int quantum) {
         this.duration -= quantum;
-    }
+    } //przydatne jedynie do RR
 
     public void addSwitch() {
         this.switches++;
