@@ -5,10 +5,16 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        int n = 100;
-        int maxDuration = 50;
-        int maxArrivalTime = 1000;
         String fileName = "RequestsList.txt";
+        createWithoutDeviation(fileName);
+
+    }
+
+
+    private static void createWithoutDeviation(String fileName){
+        int n = 1000;
+        int maxDuration = 20;
+        int maxArrivalTime = 1000;
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
@@ -22,7 +28,8 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }
+
+

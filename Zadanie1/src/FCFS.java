@@ -42,6 +42,7 @@ public class FCFS {
              if (currentTime < request.getArrivalTime()){
                  currentTime = request.getArrivalTime() + request.getDuration();
              }
+
              else {
                  currentTime += request.getDuration();
              }

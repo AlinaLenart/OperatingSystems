@@ -11,8 +11,7 @@ public class Main {
         String fileName = "RequestsList.txt";
         ArrayList<Request> requests = readRequestsFile(fileName);
 
-
-        int starvedTime = 150;
+        int starvedTime = 5000;
 
         consoleMenu(requests, starvedTime);
 
@@ -21,6 +20,7 @@ public class Main {
 
 
     private static void consoleMenu(ArrayList<Request> requests, int starvedTime){
+
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
         while (!exit){
