@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
 
         String fileName = "RequestsList.txt";
-        createWithoutDeviation(fileName);
+        createRequestList(fileName);
 
     }
 
 
-    private static void createWithoutDeviation(String fileName){
+    private static void createRequestList(String fileName){
         int n = 1000;
         int maxDuration = 20;
         int maxArrivalTime = 1000;
