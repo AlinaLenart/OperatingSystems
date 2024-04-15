@@ -1,0 +1,30 @@
+ID: 1
+Position: 23
+Arrival Time: 14
+ID: 2
+Position: 10
+Arrival Time: 18
+ID: 3
+Position: 21
+Arrival Time: 15
+ID: 4
+Position: 40
+Arrival Time: 12
+ID: 5
+Position: 15
+Arrival Time: 20
+ID: 6
+Position: 29
+Arrival Time: 7
+ID: 7
+Position: 5
+Arrival Time: 1
+ID: 8
+Position: 14
+Arrival Time: 12
+ID: 9
+Position: 5
+Arrival Time: 1
+ID: 10
+Position: 6
+Arrival Time: 9
