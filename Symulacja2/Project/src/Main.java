@@ -23,8 +23,11 @@ public class Main {
         int headPosition = 53;
         //FCFS fcfs = new FCFS(headPosition, requests);
         //fcfs.simulationFCFS();
-        SSTF sstf = new SSTF(headPosition, requests);
-        sstf.simulationSSTF();
+        //SSTF sstf = new SSTF(headPosition, requests);
+        //sstf.simulationSSTF();
+        SCAN scan = new SCAN(headPosition, requests);
+        scan.simulationSCAN();
+
 
 
     }
