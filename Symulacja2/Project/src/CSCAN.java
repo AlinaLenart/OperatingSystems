@@ -1,10 +1,10 @@
 import java.util.*;
-public class SCAN implements Simulation {
+public class CSCAN implements Simulation{
     private int headPosition;
     private int diskSize;
     private ArrayList<Request> requestsList;
 
-    public SCAN(int headPosition, int diskSize, ArrayList<Request> requestsList) {
+    public CSCAN(int headPosition, int diskSize, ArrayList<Request> requestsList) {
         if (requestsList == null) {
             throw new NullPointerException("Lista żądań nie może być pusta.");
         }
@@ -18,20 +18,15 @@ public class SCAN implements Simulation {
         ArrayList<Request> copyRequestList = new ArrayList<>(requestsList);
 
         int totalMovement = 0;
-        boolean movingRight = true;
         int currentTime = 0;
 
         while (!copyRequestList.isEmpty()) {
 
-            if (movingRight) {
-                Collections.sort(copyRequestList, Comparator.comparingInt(Request::getPosition));
-            } else {
-                Collections.sort(copyRequestList, Comparator.comparingInt(Request::getPosition).reversed());
-            }
+            Collections.sort(copyRequestList, Comparator.comparingInt(Request::getPosition));
 
             for (Iterator<Request> iterator = copyRequestList.iterator(); iterator.hasNext(); ) {
                 Request request = iterator.next();
-                if ((movingRight && request.getPosition() >= headPosition) || (!movingRight && request.getPosition() <= headPosition)) {
+                if (request.getPosition() >= headPosition) {
                     if (request.getArrivalTime() <= currentTime) {
                         totalMovement += Math.abs(headPosition - request.getPosition());
                         currentTime += Math.abs(headPosition - request.getPosition());
@@ -41,20 +36,20 @@ public class SCAN implements Simulation {
                 }
             }
 
-            if (movingRight && headPosition < diskSize) {
+            if (copyRequestList.isEmpty()){
+                break;
+            }
+
+            if (headPosition < diskSize) {
                 totalMovement += (diskSize - headPosition);
             }
 
-            else if (!movingRight && headPosition > 1){
-                totalMovement += headPosition;
-            }
-
-            headPosition = movingRight ? diskSize : 1;
-            movingRight = !movingRight;
+            headPosition = 1;
+            totalMovement += diskSize - 1;
             currentTime++;
 
         }
-        return new Result("SCAN", totalMovement);
+        return new Result("C-SCAN", totalMovement);
     }
 
 

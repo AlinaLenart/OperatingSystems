@@ -2,6 +2,7 @@ import java.util.*;
 public class Request {
     private int position;
     private int arrivalTime;
+    private int deadline;
 
     public Request(int meanDuration, int meanArrivalTime, double deviationDuration, double deviationArrivalTime) {
         Random generator = new Random();
@@ -23,9 +24,27 @@ public class Request {
 
     }
 
+    public Request(int maxDuration, int maxArrivalTime, int maxDeadline){ //bez rozkladu normalnego
+
+        Random generator = new Random();
+        this.position = generator.nextInt(maxDuration) + 1;
+        this.arrivalTime = generator.nextInt(maxArrivalTime) + 1;
+        this.deadline = generator.nextInt(maxDeadline) + 1;
+
+    }
+
+
+
     public String toString(int id) {
         return "ID: " + id +
                 "\nPosition: " + position +
+                "\nArrival Time: " + arrivalTime +
+                "\n";
+    }
+    public String rtToString(int id) {
+        return "ID: " + id +
+                "\nPosition: " + position +
+                "\nDeadline: " + deadline +
                 "\nArrival Time: " + arrivalTime +
                 "\n";
     }

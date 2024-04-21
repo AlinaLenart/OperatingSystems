@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class SSTF {
+public class SSTF implements Simulation {
     private int headPosition;
     private ArrayList<Request> requestsList;
 
@@ -14,19 +14,9 @@ public class SSTF {
         this.headPosition = headPosition;
     }
 
-    public Result simulationSSTF() {
+    public Result simulateAlgorithm() {
 
-        ArrayList<Request> copyRequestList = new ArrayList<>();
-
-        for (Request request : requestsList) {
-
-            Request copyRequest = new Request(
-                    request.getId(),
-                    request.getPosition(),
-                    request.getArrivalTime());
-
-            copyRequestList.add(copyRequest);
-        }
+        ArrayList<Request> copyRequestList = new ArrayList<>(requestsList);
 
         int currentTime = 0;
         int totalMovement = 0;
@@ -36,7 +26,6 @@ public class SSTF {
             Collections.sort(copyRequestList, Comparator.comparingInt(r -> Math.abs(headPosition - r.getPosition())));
             Request closestRequest = null;
 
-            // Znalezienie najbliższego żądania, które jest dostępne w odpowiednim czasie
             for (Request request : copyRequestList) {
                 if (request.getArrivalTime() <= currentTime) {
                     closestRequest = request;
@@ -44,16 +33,16 @@ public class SSTF {
                 }
             }
 
-            // Jeśli nie ma dostępnego żądania, zwiększ czas i kontynuuj pętlę
             if (closestRequest == null) {
                 currentTime++;
                 continue;
             }
 
-            totalMovement += Math.abs(headPosition - closestRequest.getPosition()); // Dodanie odległości ruchu
-            headPosition = closestRequest.getPosition(); // Aktualizacja pozycji głowicy
-            currentTime++; // Zwiększenie czasu
-            copyRequestList.remove(closestRequest); // Usunięcie żądania z listy
+            totalMovement += Math.abs(headPosition - closestRequest.getPosition());
+            currentTime += Math.abs(headPosition - closestRequest.getPosition());
+            headPosition = closestRequest.getPosition();
+            copyRequestList.remove(closestRequest);
+
         }
 
 

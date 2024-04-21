@@ -7,31 +7,35 @@ public class Main {
     public static void main(String[] args) {
 
         String fileName = "RequestsList.txt";
-        //ArrayList<Request> requests = readRequestsFile(fileName);
-        ArrayList<Request> requests = new ArrayList<>();
-        requests.add(new Request(1, 98, 1));
-        requests.add(new Request(1, 183, 1));
-        requests.add(new Request(1, 37, 1));
-        requests.add(new Request(1, 122, 1));
-        requests.add(new Request(1, 14, 1));
-        requests.add(new Request(1, 124, 1));
-        requests.add(new Request(1, 65, 1));
-        requests.add(new Request(1, 67, 1));
+        String fileName2 = "RealTimeRequestsList.txt";
+        ArrayList<Request> normalRequests = readRequestsFile(fileName, false);
+        ArrayList<Request> rtRequests = readRequestsFile(fileName2, true);
 
-
+        ArrayList<Request> testRequests = new ArrayList<>();
+        testRequests.add(new Request(1, 98, 0));
+        testRequests.add(new Request(1, 183, 0));
+        testRequests.add(new Request(1, 37, 0));
+        testRequests.add(new Request(1, 122, 0));
+        testRequests.add(new Request(1, 14, 0));
+        testRequests.add(new Request(1, 124, 0));
+        testRequests.add(new Request(1, 65, 0));
+        testRequests.add(new Request(1, 67, 0));
 
         int headPosition = 53;
-        //FCFS fcfs = new FCFS(headPosition, requests);
-        //fcfs.simulationFCFS();
-        //SSTF sstf = new SSTF(headPosition, requests);
-        //sstf.simulationSSTF();
-        SCAN scan = new SCAN(headPosition, requests);
-        scan.simulationSCAN();
+        int diskSize = 183;
 
+        //FCFS fcfs = new FCFS(headPosition, testRequests);
+        //fcfs.simulateAlgorithm();
+        //SSTF sstf = new SSTF(headPosition, testRequests);
+        //sstf.simulateAlgorithm();
+        //SCAN scan = new SCAN(headPosition, diskSize, testRequests);
+        //scan.simulateAlgorithm();
+        CSCAN cscan = new CSCAN(headPosition, diskSize, testRequests);
+        cscan.simulateAlgorithm();
 
 
     }
-    private static ArrayList<Request> readRequestsFile(String fileName) {
+    private static ArrayList<Request> readRequestsFile(String fileName, boolean isRealTime) {
 
         ArrayList<Request> requests = new ArrayList<>();
 
@@ -41,6 +45,7 @@ public class Main {
             int id = 0;
             int position = 0;
             int arrivalTime = 0;
+            int deadLine = 0;
 
             while ((line = reader.readLine()) != null) {
 
@@ -52,8 +57,17 @@ public class Main {
                 }
                 else if (line.startsWith("Arrival Time: ")) {
                     arrivalTime = Integer.parseInt(line.substring(14));
+                }
+                else if (isRealTime && line.startsWith("Deadline: ")) {
+                    deadLine = Integer.parseInt(line.substring(10));
+                }
+                else if (!isRealTime && line.startsWith("Arrival Time: ")) {
                     requests.add(new Request(id, position, arrivalTime));
                 }
+                else if (isRealTime && line.startsWith("Arrival Time: ")) {
+                    requests.add(new RealTimeRequest(id, position, arrivalTime, deadLine));
+                }
+
             }
 
         } catch (IOException e) {
@@ -62,4 +76,5 @@ public class Main {
 
         return requests;
     }
+
 }
