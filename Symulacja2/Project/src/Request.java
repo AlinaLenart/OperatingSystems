@@ -2,7 +2,6 @@ public class Request {
     private int id;
     private int position;
     private int arrivalTime;
-    private int deadline;
 
     public Request(int id, int position, int arrivalTime) {
         this.id = id;
@@ -18,6 +17,15 @@ public class Request {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "id=" + id +
+                ", position=" + position +
+                ", arrivalTime=" + arrivalTime +
+                '}';
     }
 
     public int getArrivalTime() {

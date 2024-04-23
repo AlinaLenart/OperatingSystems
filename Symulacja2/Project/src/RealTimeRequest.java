@@ -7,6 +7,13 @@ public class RealTimeRequest extends Request{
         this.deadline = deadline;
     }
 
+    @Override
+    public String toString() {
+        return "RealTimeRequest{" +
+                "deadline=" + deadline +
+                '}';
+    }
+
     public int getDeadline() {
         return deadline;
     }

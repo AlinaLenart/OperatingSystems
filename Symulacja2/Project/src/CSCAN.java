@@ -3,40 +3,51 @@ public class CSCAN implements Simulation{
     private int headPosition;
     private int diskSize;
     private ArrayList<Request> requestsList;
+    private final int starvedTime;
 
-    public CSCAN(int headPosition, int diskSize, ArrayList<Request> requestsList) {
+    public CSCAN(int headPosition, int diskSize, ArrayList<Request> requestsList, int starvedTime) {
         if (requestsList == null) {
             throw new NullPointerException("Lista żądań nie może być pusta.");
         }
-        this.requestsList = requestsList;
+        this.requestsList = new ArrayList<>(requestsList);
         this.headPosition = headPosition;
         this.diskSize = diskSize;
+        this.starvedTime = starvedTime;
     }
 
     public Result simulateAlgorithm() {
 
-        ArrayList<Request> copyRequestList = new ArrayList<>(requestsList);
-
         int totalMovement = 0;
         int currentTime = 0;
+        int countComingBack = 0;
+        int starvedRequests = 0;
 
-        while (!copyRequestList.isEmpty()) {
+        while (!requestsList.isEmpty()) {
 
-            Collections.sort(copyRequestList, Comparator.comparingInt(Request::getPosition));
+            Collections.sort(requestsList, Comparator.comparingInt(Request::getPosition));
 
-            for (Iterator<Request> iterator = copyRequestList.iterator(); iterator.hasNext(); ) {
+            for (Iterator<Request> iterator = requestsList.iterator(); iterator.hasNext(); ) {
+
                 Request request = iterator.next();
+
                 if (request.getPosition() >= headPosition) {
+
                     if (request.getArrivalTime() <= currentTime) {
+
                         totalMovement += Math.abs(headPosition - request.getPosition());
                         currentTime += Math.abs(headPosition - request.getPosition());
+
+                        if ((currentTime - request.getArrivalTime()) > starvedTime){
+                            starvedRequests++;
+                        }
+
                         headPosition = request.getPosition();
                         iterator.remove();
                     }
                 }
             }
 
-            if (copyRequestList.isEmpty()){
+            if (requestsList.isEmpty()){
                 break;
             }
 
@@ -46,10 +57,12 @@ public class CSCAN implements Simulation{
 
             headPosition = 1;
             totalMovement += diskSize - 1;
+            countComingBack++;
             currentTime++;
 
         }
-        return new Result("C-SCAN", totalMovement);
+
+        return new Result(countComingBack, "C-SCAN", totalMovement, starvedRequests);
     }
 
 

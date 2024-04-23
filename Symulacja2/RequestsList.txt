@@ -1,30 +1,36 @@
 ID: 1
-Position: 23
-Arrival Time: 14
+Position: 10
+Arrival Time: 0
 ID: 2
-Position: 27
-Arrival Time: 10
+Position: 50
+Arrival Time: 0
 ID: 3
-Position: 36
-Arrival Time: 10
+Position: 60
+Arrival Time: 0
 ID: 4
-Position: 36
-Arrival Time: 20
+Position: 78
+Arrival Time: 0
 ID: 5
 Position: 25
-Arrival Time: 11
+Arrival Time: 0
 ID: 6
-Position: 26
-Arrival Time: 8
+Position: 56
+Arrival Time: 0
 ID: 7
-Position: 37
-Arrival Time: 6
+Position: 33
+Arrival Time: 0
 ID: 8
-Position: 7
-Arrival Time: 11
+Position: 67
+Arrival Time: 0
 ID: 9
-Position: 2
-Arrival Time: 9
+Position: 89
+Arrival Time: 0
 ID: 10
-Position: 5
-Arrival Time: 14
+Position: 12
+Arrival Time: 0
+ID: 11
+Position: 12
+Arrival Time: 0
+ID: 11
+Position: 120
+Arrival Time: 0

@@ -1,8 +1,12 @@
 ID: 1
 Position: 26
 Deadline: 58
-Arrival Time: 14
+Arrival Time: 0
 ID: 2
 Position: 11
 Deadline: 94
-Arrival Time: 14
+Arrival Time: 0
+ID: 3
+Position: 90
+Deadline: 1000
+Arrival Time: 0
