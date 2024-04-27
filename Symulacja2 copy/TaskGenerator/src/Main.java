@@ -15,7 +15,7 @@ public class Main {
         int amount = 50;
         int maxPosition = 100;
         int maxArrivalTime = 200;
-        int maxDeadline = 40;
+        int maxDeadline = 70;
         double ratio = 0.2;
         createRequestList(amount, fileName, maxPosition, maxArrivalTime);
         createRealTimeRequestList(amount, ratio, fileName2, maxPosition, maxArrivalTime, maxDeadline);
@@ -26,7 +26,7 @@ public class Main {
         int amount = 500;
         int maxPosition = 100;
         int maxArrivalTime = 200;
-        int maxDeadline = 40;
+        int maxDeadline = 70;
         double ratio = 0.2;
         createRequestList(amount, fileName, maxPosition, maxArrivalTime);
         createRealTimeRequestList(amount, ratio, fileName2, maxPosition, maxArrivalTime, maxDeadline);

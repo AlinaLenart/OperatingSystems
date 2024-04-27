@@ -10,23 +10,14 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        int headPosition = 50;
-        int starvedTime = 300;
+        int headPosition = 1;
+        int starvedTime = 750;
         int smallDiskSize = 100;
-        int bigDiskSize = 1000;
-
+        int bigDiskSize = 500;
         testSmallAmountSmallDisk(headPosition, starvedTime, smallDiskSize);
         testBigAmountSmallDisk(headPosition, starvedTime, smallDiskSize);
         testSmallAmountBigDisk(headPosition, starvedTime, bigDiskSize);
         testBigAmountBigDisk(headPosition, starvedTime, bigDiskSize);
-
-
-
-
-
-
-
-
     }
     private static void testSmallAmountSmallDisk(int headPosition, int starvedTime, int smallDiskSize){
 

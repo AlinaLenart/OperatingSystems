@@ -1,0 +1,150 @@
+ID: 1
+Position: 96
+Arrival Time: 121
+ID: 2
+Position: 99
+Arrival Time: 153
+ID: 3
+Position: 83
+Arrival Time: 73
+ID: 4
+Position: 29
+Arrival Time: 76
+ID: 5
+Position: 30
+Arrival Time: 55
+ID: 6
+Position: 39
+Arrival Time: 40
+ID: 7
+Position: 58
+Arrival Time: 17
+ID: 8
+Position: 8
+Arrival Time: 19
+ID: 9
+Position: 28
+Arrival Time: 122
+ID: 10
+Position: 1
+Arrival Time: 69
+ID: 11
+Position: 96
+Arrival Time: 133
+ID: 12
+Position: 54
+Arrival Time: 44
+ID: 13
+Position: 27
+Arrival Time: 76
+ID: 14
+Position: 43
+Arrival Time: 146
+ID: 15
+Position: 80
+Arrival Time: 45
+ID: 16
+Position: 64
+Arrival Time: 157
+ID: 17
+Position: 82
+Arrival Time: 153
+ID: 18
+Position: 3
+Arrival Time: 34
+ID: 19
+Position: 35
+Arrival Time: 191
+ID: 20
+Position: 34
+Arrival Time: 41
+ID: 21
+Position: 16
+Arrival Time: 103
+ID: 22
+Position: 51
+Arrival Time: 25
+ID: 23
+Position: 44
+Arrival Time: 106
+ID: 24
+Position: 52
+Arrival Time: 8
+ID: 25
+Position: 51
+Arrival Time: 103
+ID: 26
+Position: 16
+Arrival Time: 1
+ID: 27
+Position: 19
+Arrival Time: 61
+ID: 28
+Position: 15
+Arrival Time: 137
+ID: 29
+Position: 14
+Arrival Time: 166
+ID: 30
+Position: 65
+Arrival Time: 23
+ID: 31
+Position: 73
+Arrival Time: 96
+ID: 32
+Position: 54
+Arrival Time: 150
+ID: 33
+Position: 97
+Arrival Time: 3
+ID: 34
+Position: 52
+Arrival Time: 135
+ID: 35
+Position: 32
+Arrival Time: 89
+ID: 36
+Position: 17
+Arrival Time: 136
+ID: 37
+Position: 13
+Arrival Time: 28
+ID: 38
+Position: 13
+Arrival Time: 51
+ID: 39
+Position: 96
+Arrival Time: 139
+ID: 40
+Position: 10
+Arrival Time: 177
+ID: 41
+Position: 26
+Arrival Time: 25
+ID: 42
+Position: 89
+Arrival Time: 111
+ID: 43
+Position: 5
+Arrival Time: 85
+ID: 44
+Position: 50
+Arrival Time: 146
+ID: 45
+Position: 8
+Arrival Time: 31
+ID: 46
+Position: 50
+Arrival Time: 183
+ID: 47
+Position: 41
+Arrival Time: 180
+ID: 48
+Position: 92
+Arrival Time: 100
+ID: 49
+Position: 38
+Arrival Time: 53
+ID: 50
+Position: 78
+Arrival Time: 169

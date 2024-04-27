@@ -1,0 +1,150 @@
+ID: 1
+Position: 781
+Arrival Time: 28
+ID: 2
+Position: 865
+Arrival Time: 384
+ID: 3
+Position: 776
+Arrival Time: 264
+ID: 4
+Position: 451
+Arrival Time: 45
+ID: 5
+Position: 122
+Arrival Time: 350
+ID: 6
+Position: 350
+Arrival Time: 337
+ID: 7
+Position: 702
+Arrival Time: 50
+ID: 8
+Position: 380
+Arrival Time: 181
+ID: 9
+Position: 366
+Arrival Time: 283
+ID: 10
+Position: 134
+Arrival Time: 146
+ID: 11
+Position: 413
+Arrival Time: 14
+ID: 12
+Position: 461
+Arrival Time: 101
+ID: 13
+Position: 602
+Arrival Time: 126
+ID: 14
+Position: 377
+Arrival Time: 393
+ID: 15
+Position: 334
+Arrival Time: 120
+ID: 16
+Position: 862
+Arrival Time: 279
+ID: 17
+Position: 400
+Arrival Time: 291
+ID: 18
+Position: 159
+Arrival Time: 211
+ID: 19
+Position: 918
+Arrival Time: 310
+ID: 20
+Position: 535
+Arrival Time: 44
+ID: 21
+Position: 969
+Arrival Time: 350
+ID: 22
+Position: 37
+Arrival Time: 73
+ID: 23
+Position: 870
+Arrival Time: 214
+ID: 24
+Position: 20
+Arrival Time: 31
+ID: 25
+Position: 216
+Arrival Time: 16
+ID: 26
+Position: 333
+Arrival Time: 361
+ID: 27
+Position: 476
+Arrival Time: 317
+ID: 28
+Position: 173
+Arrival Time: 136
+ID: 29
+Position: 601
+Arrival Time: 277
+ID: 30
+Position: 185
+Arrival Time: 361
+ID: 31
+Position: 913
+Arrival Time: 63
+ID: 32
+Position: 278
+Arrival Time: 7
+ID: 33
+Position: 276
+Arrival Time: 26
+ID: 34
+Position: 783
+Arrival Time: 10
+ID: 35
+Position: 689
+Arrival Time: 373
+ID: 36
+Position: 276
+Arrival Time: 248
+ID: 37
+Position: 883
+Arrival Time: 136
+ID: 38
+Position: 921
+Arrival Time: 24
+ID: 39
+Position: 272
+Arrival Time: 106
+ID: 40
+Position: 522
+Arrival Time: 81
+ID: 41
+Position: 963
+Arrival Time: 365
+ID: 42
+Position: 580
+Arrival Time: 322
+ID: 43
+Position: 687
+Arrival Time: 157
+ID: 44
+Position: 812
+Arrival Time: 390
+ID: 45
+Position: 98
+Arrival Time: 58
+ID: 46
+Position: 20
+Arrival Time: 171
+ID: 47
+Position: 652
+Arrival Time: 353
+ID: 48
+Position: 181
+Arrival Time: 280
+ID: 49
+Position: 107
+Arrival Time: 287
+ID: 50
+Position: 409
+Arrival Time: 326

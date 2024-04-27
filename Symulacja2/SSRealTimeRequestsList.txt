@@ -1,0 +1,40 @@
+ID: 1
+Position: 100
+Deadline: 33
+Arrival Time: 153
+ID: 2
+Position: 95
+Deadline: 6
+Arrival Time: 7
+ID: 3
+Position: 43
+Deadline: 18
+Arrival Time: 193
+ID: 4
+Position: 69
+Deadline: 14
+Arrival Time: 198
+ID: 5
+Position: 30
+Deadline: 24
+Arrival Time: 182
+ID: 6
+Position: 8
+Deadline: 5
+Arrival Time: 148
+ID: 7
+Position: 31
+Deadline: 7
+Arrival Time: 131
+ID: 8
+Position: 72
+Deadline: 23
+Arrival Time: 123
+ID: 9
+Position: 99
+Deadline: 2
+Arrival Time: 41
+ID: 10
+Position: 17
+Deadline: 9
+Arrival Time: 64
