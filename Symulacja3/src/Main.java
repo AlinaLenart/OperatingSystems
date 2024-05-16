@@ -2,20 +2,19 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        int totalReferences = 20;
+        int totalReferences = 10000;
         List<Integer> pageReferences = Generator.generatePageReferences(totalReferences);
-        generatedPrint(totalReferences, pageReferences);
+        //generatedPrint(totalReferences, pageReferences);
+        //List<Integer> pageReferences = List.of(1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5);
 
-        int ramSize = 5;
+        int ramSize = 8;
+
         Algorithms alg = new Algorithms(pageReferences, ramSize);
         alg.FIFO();
-        System.out.println();
         alg.RAND();
-        System.out.println();
         alg.OPT();
-        System.out.println();
         alg.LRU();
-
+        alg.approximatedLRU();
 
 
 

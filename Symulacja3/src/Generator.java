@@ -7,16 +7,16 @@ public class Generator {
         List<Integer> pageReferences = new ArrayList<>();
         Random random = new Random();
 
-        int maxRepeat = random.nextInt(6); // zakres [0, 5]
+        int maxRepeat = random.nextInt(6) + 5; // zakres [5, 10] dla dłuższych sekwencji lokalności
 
         for (int i = 0; i < totalReferences; i++) {
-            int repeat = random.nextInt(11); // zakres [0, 10]
+            int repeat = random.nextInt(3); // zwiększamy częstotliwość lokalności (zakres [0, 2])
             int pageNumber;
-            if (repeat < maxRepeat && !pageReferences.isEmpty() && i > 6) {
-                //jeśli lokalności, wybierz jedną z poprzednich liczb
-                pageNumber = pageReferences.get(Math.abs(i - random.nextInt(6) - 1));
+            if (repeat < 2 && !pageReferences.isEmpty() && i > 15) {
+                // jeśli lokalności, wybierz jedną z poprzednich liczb
+                pageNumber = pageReferences.get(i - random.nextInt(15) - 1);
             } else {
-                pageNumber = random.nextInt(15) + 1; //zakres odwolan stron [1, 15]
+                pageNumber = random.nextInt(15) + 1; // zakres odwolan stron [1, 15]
             }
             pageReferences.add(pageNumber);
         }

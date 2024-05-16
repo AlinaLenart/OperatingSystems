@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class Algorithms {
-    private List<Integer> pageReferences;
-    private int ramSize;
+    private final List<Integer> pageReferences;
+    private final int ramSize;
 
     public Algorithms(List<Integer> pageReferences, int ramSize) {
         this.pageReferences = pageReferences;
@@ -26,7 +26,7 @@ public class Algorithms {
                     pageFaults++;
                 }
             }
-            displayRam(ram);
+
         }
 
         System.out.println("Liczba błędów strony (FIFO): " + pageFaults);
@@ -51,7 +51,7 @@ public class Algorithms {
                     pageFaults++;
                 }
             }
-            displayRam(ram);
+
         }
 
         System.out.println("Liczba błędów strony (RAND): " + pageFaults);
@@ -77,7 +77,7 @@ public class Algorithms {
                     pageFaults++;
                 }
             }
-            displayRam(ram);
+
         }
 
         System.out.println("Liczba błędów strony (OPT): " + pageFaults);
@@ -106,10 +106,62 @@ public class Algorithms {
                 int index = getIndexInRam(ram, page);
                 updateUsageHistory(usageHistory, index); // Update usage history
             }
-            displayRam(ram);
+
         }
 
         System.out.println("Liczba błędów strony (LRU): " + pageFaults);
+    }
+    public void approximatedLRU() {
+        Queue<Integer> pages = new LinkedList<>(pageReferences);
+        Queue<Page> ram = new ArrayDeque<>();
+        int pageFaults = 0;
+
+        for (int page : pages) {
+            if (!containsPage(ram, page)) {
+                pageFaults++;
+                if (ram.size() == ramSize) {
+                    replacePageInRAM(ram, page);
+                }
+                else {
+                    ram.add(new Page(page));
+                }
+            }
+            else {
+                updateReferenceBit(ram, page);
+            }
+        }
+
+        System.out.println("Liczba błędów strony (Approximated LRU): " + pageFaults);
+    }
+    private boolean containsPage(Queue<Page> ram, int page) {
+        for (Page p : ram) {
+            if (p.pageNumber == page) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void replacePageInRAM(Queue<Page> ram, int newPage) {
+        while (true) {
+            Page frontPage = ram.poll();
+            if (frontPage.referenceBit == 0) {
+                ram.add(new Page(newPage));
+                break;
+            } else {
+                frontPage.referenceBit = 0;
+                ram.add(frontPage);
+            }
+        }
+    }
+
+    private void updateReferenceBit(Queue<Page> ram, int page) {
+        for (Page p : ram) {
+            if (p.pageNumber == page) {
+                p.referenceBit = 1;
+                break;
+            }
+        }
     }
 
 
@@ -140,13 +192,6 @@ public class Algorithms {
             array[i] = array[i + 1]; // przesuwam o 1 do przodu wszystkie
         }
         array[array.length - 1] = element; //dodanie nowej strony
-    }
-
-    private void displayRam(int[] array) {
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + "; ");
-        }
-        System.out.println();
     }
 
     private int getOptimalReplacement(int[] ram, Queue<Integer> remainingPages) {
@@ -206,6 +251,29 @@ public class Algorithms {
         return maxIndex;
     }
 
+    private void displayRamQ(Queue<Page> ram) {
+        System.out.print("RAM: ");
+        for (Page page : ram) {
+            System.out.print(page + " ");
+        }
+        System.out.println();
+    }
+    private void displayRam(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + "; ");
+        }
+        System.out.println();
+    }
+    private static class Page {
+        int pageNumber;
+        int referenceBit;
+
+        Page(int pageNumber) {
+            this.pageNumber = pageNumber;
+            this.referenceBit = 1;
+        }
+    }
 
 
 }
+
