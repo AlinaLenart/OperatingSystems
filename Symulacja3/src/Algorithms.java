@@ -22,14 +22,14 @@ public class Algorithms {
                     pageFaults++;
                 }
                 else {
-                    addPageToRAM(ram, page); //??? przesuwanie
+                    addPageToRAM(ram, page); // przesuwanie
                     pageFaults++;
                 }
             }
 
         }
 
-        System.out.println("Liczba błędów strony (FIFO): " + pageFaults);
+        System.out.println("Liczba bledow strony (FIFO): " + pageFaults);
     }
 
     public void RAND() {
@@ -39,14 +39,16 @@ public class Algorithms {
         Queue<Integer> pages = new LinkedList<>(pageReferences);
 
         while (!pages.isEmpty()) {
+
             int page = pages.poll();
-            if (!hasElement(ram, page)) { // If the page is not in RAM
-                if (isFull(ram)) { // If RAM is full
-                    // Replace a random page in RAM
-                    int randomIndex = generate.nextInt(ramSize);
+
+            if (!hasElement(ram, page)) { // nie ma tej strony w pamieci RAM
+                if (isFull(ram)) { // pelny RAM
+                    int randomIndex = generate.nextInt(ramSize); //zastąpienie randomowego indeksu
                     ram[randomIndex] = page;
                     pageFaults++;
-                } else {
+                }
+                else {
                     addPageToRAM(ram, page);
                     pageFaults++;
                 }
@@ -54,7 +56,7 @@ public class Algorithms {
 
         }
 
-        System.out.println("Liczba błędów strony (RAND): " + pageFaults);
+        System.out.println("Liczba bledow strony (RAND): " + pageFaults);
     }
 
     public void OPT() {
@@ -66,50 +68,49 @@ public class Algorithms {
 
             int page = pages.poll();
 
-            if (!hasElement(ram, page)) { // If the page is not in RAM
-
-                if (isFull(ram)) { // If RAM is full
+            if (!hasElement(ram, page)) { // nie ma strony w ramie
+                if (isFull(ram)) { // pelny ram
                     int replaceIndex = getOptimalReplacement(ram, pages);
-                    ram[replaceIndex] = page; // Replace the page at the optimal index
+                    ram[replaceIndex] = page; // zastapic z indeksem ktory w przyszlosci pojawi sie najpozniej/wcale
                     pageFaults++;
-                } else {
-                    addPageToRAM(ram, page); // Add the page to RAM
+                }
+                else {
+                    addPageToRAM(ram, page); // po prostu dodanie jesli jest miejsce
                     pageFaults++;
                 }
             }
-
         }
-
-        System.out.println("Liczba błędów strony (OPT): " + pageFaults);
+        System.out.println("Liczba bledow strony (OPT): " + pageFaults);
     }
 
     public void LRU() {
         Queue<Integer> pages = new LinkedList<>(pageReferences);
         int[] ram = new int[ramSize];
-        int[] usageHistory = new int[ramSize]; // Array to track usage history
+        int[] usageHistory = new int[ramSize]; // tablica do rejestrowania jak czesto uzywalismy strony
         int pageFaults = 0;
 
         while (!pages.isEmpty()) {
             int page = pages.poll();
-            if (!hasElement(ram, page)) { // If the page is not in RAM
-                if (isFull(ram)) { // If RAM is full
-                    int replaceIndex = getLeastRecentlyUsedIndex(usageHistory); // Find the index of the least recently used page
-                    ram[replaceIndex] = page; // Replace the least recently used page
-                    updateUsageHistory(usageHistory, replaceIndex); // Update usage history
-                    pageFaults++;
-                } else {
-                    addPageToRAM(ram, page); // Add the page to RAM
-                    updateUsageHistory(usageHistory, ramSize - 1); // Update usage history
-                    pageFaults++;
+            if (!hasElement(ram, page)) { // nie ma strony w ramie
+                pageFaults++;
+                if (isFull(ram)) { // ram jest pelny
+                    int replaceIndex = getLeastRecentlyUsedIndex(usageHistory); // szukanie najrzadziej uzywanego
+                    ram[replaceIndex] = page;
+                    resetUsageHistory(usageHistory, replaceIndex);
                 }
-            } else { // If the page is already in RAM, update its usage history
+                else {
+                    addPageToRAM(ram, page); // jesli jest miejsce to dodajemy
+                    resetUsageHistory(usageHistory, ramSize - 1); // i aktualizujemy historie
+                }
+            }
+            else { // jezeli strona juz jest w ramie aktualizacja tablicy uzycia
                 int index = getIndexInRam(ram, page);
-                updateUsageHistory(usageHistory, index); // Update usage history
+                resetUsageHistory(usageHistory, index);
             }
 
         }
 
-        System.out.println("Liczba błędów strony (LRU): " + pageFaults);
+        System.out.println("Liczba bledow strony (LRU): " + pageFaults);
     }
     public void approximatedLRU() {
         Queue<Integer> pages = new LinkedList<>(pageReferences);
@@ -191,7 +192,7 @@ public class Algorithms {
         for (int i = 0; i < array.length - 1; i++) {
             array[i] = array[i + 1]; // przesuwam o 1 do przodu wszystkie
         }
-        array[array.length - 1] = element; //dodanie nowej strony
+        array[array.length - 1] = element; // dodanie nowej strony
     }
 
     private int getOptimalReplacement(int[] ram, Queue<Integer> remainingPages) {
@@ -199,11 +200,11 @@ public class Algorithms {
         int replacePageIndex = -1;
 
         for (int i = 0; i < ram.length; i++) {
-            int pageIndex = getIndex(ram[i], remainingPages); // Get the index of the current page in the remaining pages
-            if (pageIndex == -1) { // If the page won't be used anymore
-                return i; // Return the index of this page for replacement in the RAM array
+            int pageIndex = getIndex(ram[i], remainingPages); // kiedy nastepnym razem sie pojawi
+            if (pageIndex == -1) { // jesli w ogole sie nie pojawi to odrazu wymieniamy
+                return i;
             }
-            if (pageIndex > maxIndex) {
+            if (pageIndex > maxIndex) { // jesli pojawia sie ale daleko to tez zamieniamy
                 maxIndex = pageIndex;
                 replacePageIndex = i;
             }
@@ -231,12 +232,13 @@ public class Algorithms {
         return -1;
     }
 
-    private void updateUsageHistory(int[] usageHistory, int index) {
+    private void resetUsageHistory(int[] usageHistory, int index) {
         for (int i = 0; i < usageHistory.length; i++) {
             if (i == index) {
-                usageHistory[i] = 0; // Reset usage history for the recently used page
-            } else {
-                usageHistory[i]++; // Increment usage history for other pages
+                usageHistory[i] = 0; // zeruje usageHistory
+            }
+            else {
+                usageHistory[i]++; // zwiekszam usageHistory dla innych
             }
         }
     }
@@ -264,6 +266,7 @@ public class Algorithms {
         }
         System.out.println();
     }
+
     private static class Page {
         int pageNumber;
         int referenceBit;
@@ -271,6 +274,13 @@ public class Algorithms {
         Page(int pageNumber) {
             this.pageNumber = pageNumber;
             this.referenceBit = 1;
+        }
+
+        @Override
+        public String toString() {
+            return "[" + pageNumber +
+                    "; " + referenceBit +
+                    "]";
         }
     }
 

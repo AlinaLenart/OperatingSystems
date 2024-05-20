@@ -7,7 +7,7 @@ public class Main {
         //generatedPrint(totalReferences, pageReferences);
         //List<Integer> pageReferences = List.of(1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5);
 
-        int ramSize = 8;
+        int ramSize = 7;
 
         Algorithms alg = new Algorithms(pageReferences, ramSize);
         alg.FIFO();
