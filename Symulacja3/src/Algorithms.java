@@ -9,7 +9,7 @@ public class Algorithms {
         this.ramSize = ramSize;
     }
 
-    public void FIFO(){
+    public int FIFO(){
         Queue<Integer> pages = new LinkedList<>(pageReferences);
         int[] ram = new int[ramSize];
         int pageFaults = 0;
@@ -26,13 +26,11 @@ public class Algorithms {
                     pageFaults++;
                 }
             }
-
         }
-
-        System.out.println("Liczba bledow strony (FIFO): " + pageFaults);
+        return pageFaults;
     }
 
-    public void RAND() {
+    public int RAND() {
         int[] ram = new int[ramSize];
         int pageFaults = 0;
         Random generate = new Random();
@@ -53,13 +51,11 @@ public class Algorithms {
                     pageFaults++;
                 }
             }
-
         }
-
-        System.out.println("Liczba bledow strony (RAND): " + pageFaults);
+        return pageFaults;
     }
 
-    public void OPT() {
+    public int OPT() {
         int[] ram = new int[ramSize];
         int pageFaults = 0;
         Queue<Integer> pages = new LinkedList<>(pageReferences);
@@ -80,10 +76,10 @@ public class Algorithms {
                 }
             }
         }
-        System.out.println("Liczba bledow strony (OPT): " + pageFaults);
+        return pageFaults;
     }
 
-    public void LRU() {
+    public int LRU() {
         Queue<Integer> pages = new LinkedList<>(pageReferences);
         int[] ram = new int[ramSize];
         int[] usageHistory = new int[ramSize]; // tablica do rejestrowania jak czesto uzywalismy strony
@@ -107,12 +103,10 @@ public class Algorithms {
                 int index = getIndexInRam(ram, page);
                 resetUsageHistory(usageHistory, index);
             }
-
         }
-
-        System.out.println("Liczba bledow strony (LRU): " + pageFaults);
+        return pageFaults;
     }
-    public void approximatedLRU() {
+    public int approximatedLRU() {
         Queue<Integer> pages = new LinkedList<>(pageReferences);
         Queue<Page> ram = new ArrayDeque<>();
         int pageFaults = 0;
@@ -131,8 +125,7 @@ public class Algorithms {
                 updateReferenceBit(ram, page);
             }
         }
-
-        System.out.println("Liczba błędów strony (Approximated LRU): " + pageFaults);
+        return pageFaults;
     }
     private boolean containsPage(Queue<Page> ram, int page) {
         for (Page p : ram) {

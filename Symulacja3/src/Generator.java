@@ -15,7 +15,8 @@ public class Generator {
             if (repeat < 2 && !pageReferences.isEmpty() && i > 15) {
                 // jeśli lokalności, wybierz jedną z poprzednich liczb
                 pageNumber = pageReferences.get(i - random.nextInt(15) - 1);
-            } else {
+            }
+            else {
                 pageNumber = random.nextInt(15) + 1; // zakres odwolan stron [1, 15]
             }
             pageReferences.add(pageNumber);

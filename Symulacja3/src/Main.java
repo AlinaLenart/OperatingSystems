@@ -4,17 +4,24 @@ public class Main {
     public static void main(String[] args) {
         int totalReferences = 10000;
         List<Integer> pageReferences = Generator.generatePageReferences(totalReferences);
-        //generatedPrint(totalReferences, pageReferences);
-        //List<Integer> pageReferences = List.of(1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5);
+        generatedPrint(totalReferences, pageReferences);
 
         int ramSize = 7;
 
         Algorithms alg = new Algorithms(pageReferences, ramSize);
-        alg.FIFO();
-        alg.RAND();
-        alg.OPT();
-        alg.LRU();
-        alg.approximatedLRU();
+
+        int fifo = alg.FIFO();
+        int rand = alg.RAND();
+        int opt = alg.OPT();
+        int lru = alg.LRU();
+        int approxlru = alg.approximatedLRU();
+
+        System.out.printf("%-15s %-15s %10s \n", "Algorytm", "Bledy strony", "Procent");
+        System.out.printf("%-15s %-15d %8.2f%% \n","FIFO", fifo, (double) fifo / totalReferences * 100);
+        System.out.printf("%-15s %-15d %8.2f%% \n","RAND", rand, (double) rand / totalReferences * 100);
+        System.out.printf("%-15s %-15d %8.2f%% \n","OPT", opt, (double) opt / totalReferences * 100);
+        System.out.printf("%-15s %-15d %8.2f%% \n","LRU", lru, (double) lru / totalReferences * 100);
+        System.out.printf("%-15s %-15d %8.2f%% \n","approxLRU", approxlru, (double) approxlru / totalReferences * 100);
 
 
 
