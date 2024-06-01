@@ -269,12 +269,6 @@ public class Algorithms {
             this.referenceBit = 1;
         }
 
-        @Override
-        public String toString() {
-            return "[" + pageNumber +
-                    "; " + referenceBit +
-                    "]";
-        }
     }
 
 
