@@ -10,6 +10,9 @@ public class LRUSimulator {
 
     // Simulate LRU page replacement algorithm
     public int simulateLRU() {
+        if(ramSize < 1) {
+            throw new ArrayIndexOutOfBoundsException("Za malo ramek: " + ramSize);
+        }
         Queue<Integer> pages = new LinkedList<>(pageReferences);
         int[] ram = new int[ramSize];
         int[] usageHistory = new int[ramSize]; // tablica do rejestrowania jak czesto uzywalismy strony
