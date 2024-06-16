@@ -12,10 +12,8 @@ public class ProportionalAllocation {
         this.pagesVariety = pagesVariety;
     }
 
-    // Strategy 2: Proportional Allocation
     public int simulate() {
         int totalPageFaults = 0;
-        int[] maxPageFaults = new int[2];
 
         for (List<Integer> pageReferences : pageReferencesPerProcess) {
             int processVariety = Collections.max(pageReferences) - Collections.min(pageReferences) + 1;

@@ -11,13 +11,9 @@ public class EqualAllocation {
         this.processCount = pageReferencesPerProcess.size();
     }
 
-    // Strategy 1: Equal Allocation
     public int simulate() {
         int framesPerProcess = ramSize / processCount;
         int totalPageFaults = 0;
-        int[] maxPageFaults = new int[2];
-        maxPageFaults[0] = -1; //ktory proces
-        maxPageFaults[1] = -1; //ile bledow
 
         for (List<Integer> pageReferences : pageReferencesPerProcess) {
             LRUSimulator lrusimulator = new LRUSimulator(pageReferences, framesPerProcess);
