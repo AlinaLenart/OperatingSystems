@@ -16,6 +16,6 @@ public class Strategy1 {
             }
         }
 
-        currentProcessor.addTask(task);
+        currentProcessor.addTask(task); //nie znalazlam mniej obciazonego
     }
 }

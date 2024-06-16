@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Processor {
-    private List<Task> tasks; // Lista zadań przypisanych do procesora
+    private List<Task> tasks;
 
     public Processor() {
         tasks = new ArrayList<>();
@@ -21,11 +21,11 @@ public class Processor {
         return totalLoad;
     }
 
-    public void updateTasks() {
+    public void updateTasks(int deltaT) {
         Iterator<Task> iterator = tasks.iterator();
         while (iterator.hasNext()) {
             Task task = iterator.next();
-            task.decrementExecutionTime();
+            task.decrementExecutionTime(deltaT);
             if (task.isCompleted()) {
                 iterator.remove();
             }
@@ -40,6 +40,6 @@ public class Processor {
         if (tasks.isEmpty()) {
             return null;
         }
-        return tasks.remove(tasks.size() - 1);
+        return tasks.removeLast();
     }
 }

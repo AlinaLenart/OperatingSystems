@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Strategy3 {
@@ -7,31 +10,54 @@ public class Strategy3 {
         Processor currentProcessor = processors[random.nextInt(processors.length)];
 
         if (currentProcessor.getCurrentLoad() > p) {
-            while (true) {
+            List<Integer> numbers = randomGenerator(processors);
+            for (int index : numbers) {
                 stats.incrementQueries();
-                Processor randomProcessor = processors[random.nextInt(processors.length)];
+                Processor randomProcessor = processors[index];
                 if (randomProcessor.getCurrentLoad() < p) {
                     randomProcessor.addTask(task);
                     stats.incrementMigrations();
                     return;
                 }
             }
+
         } else {
             currentProcessor.addTask(task);
         }
 
         for (Processor processor : processors) {
+
             if (processor.getCurrentLoad() < r) {
-                Processor randomProcessor = processors[random.nextInt(processors.length)];
-                stats.incrementQueries();
-                if (randomProcessor.getCurrentLoad() > p) {
-                    Task transferredTask = randomProcessor.removeTask();
-                    if (transferredTask != null) {
-                        processor.addTask(transferredTask);
-                        stats.incrementMigrations();
+
+                List<Integer> numbers2 = randomGenerator(processors);
+
+                for (int index : numbers2) {
+
+                    Processor randomProcessor = processors[index];
+                    stats.incrementQueries();
+
+                    if (randomProcessor.getCurrentLoad() > p) {
+
+                        Task transferredTask = randomProcessor.removeTask(); //przenosze jeden - ostatni
+
+                        if (transferredTask != null) {
+
+                            processor.addTask(transferredTask);
+                            stats.incrementMigrations();
+                        }
                     }
                 }
             }
         }
+    }
+    private static List<Integer> randomGenerator(Processor[] processors){
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < processors.length; i++) {
+            numbers.add(i);
+        }
+
+        Collections.shuffle(numbers, new Random());
+
+        return numbers;
     }
 }
