@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Strategy3 {
+public class Strategy3 { //ambitny - alfa i omega
     private static final Random random = new Random();
 
     public static void assignTask(Task task, Processor[] processors, double p, double r, Statistics stats) {
@@ -26,9 +26,7 @@ public class Strategy3 {
         }
 
         for (Processor processor : processors) {
-
             if (processor.getCurrentLoad() < r) {
-
                 List<Integer> numbers2 = randomGenerator(processors);
 
                 for (int index : numbers2) {

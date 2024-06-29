@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Strategy1 {
+public class Strategy1 { //leniwa
     private static final Random random = new Random();
 
     public static void assignTask(Task task, Processor[] processors, double p, int maxTries, Statistics stats) {

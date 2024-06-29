@@ -17,6 +17,10 @@ public class Task {
         return arrivalTime;
     }
 
+    public int getExecutionTime() {
+        return executionTime;
+    }
+
     public void decrementExecutionTime(int deltaT) {
         this.executionTime -= deltaT;
     }

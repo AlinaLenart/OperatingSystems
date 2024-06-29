@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) {
         int N = 50;
@@ -14,7 +18,16 @@ public class Main {
             processors[i] = new Processor();
         }
 
-        SimulationResult result1 = LoadBalancingSimulation.runSimulation(processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
+        List<Task> tasksList = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < numTasks; i++) {
+            // zadania o wymaganiach 1% - 6%, czasie trwania 1-maxExecutionTime, arrivalTime: 0-maxArrivalTime
+            Task task = new Task(random.nextDouble() * 0.05 + 0.01, random.nextInt(maxExecutionTime) + 1, random.nextInt(maxArrivalTime));
+            tasksList.add(task);
+        }
+
+        SimulationResult result1 = LoadBalancingSimulation.runSimulation(tasksList, processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
             @Override
             public void assignTask(Task task, Processor[] processors, double p, double r, int maxTries, Statistics stats) {
                 Strategy1.assignTask(task, processors, p, maxTries, stats);
@@ -27,7 +40,7 @@ public class Main {
             processors[i] = new Processor();
         }
 
-        SimulationResult result2 = LoadBalancingSimulation.runSimulation(processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
+        SimulationResult result2 = LoadBalancingSimulation.runSimulation(tasksList, processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
             @Override
             public void assignTask(Task task, Processor[] processors, double p, double r, int maxTries, Statistics stats) {
                 Strategy2.assignTask(task, processors, p, stats);
@@ -40,7 +53,7 @@ public class Main {
             processors[i] = new Processor();
         }
 
-        SimulationResult result3 = LoadBalancingSimulation.runSimulation(processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
+        SimulationResult result3 = LoadBalancingSimulation.runSimulation(tasksList, processors, numTasks, deltaT, p, r, maxArrivalTime, maxExecutionTime, maxTries, new LoadBalancingSimulation.Strategy() {
             @Override
             public void assignTask(Task task, Processor[] processors, double p, double r, int maxTries, Statistics stats) {
                 Strategy3.assignTask(task, processors, p, r, stats);
@@ -50,11 +63,12 @@ public class Main {
     }
 
     private static void printResults(String strategyName, SimulationResult result) {
-        System.out.println(strategyName + " Results:");
+        System.out.println(strategyName + " --> Wyniki:");
         System.out.println("Srednie obciążenie procesorow: " + result.getMeanLoad());
         System.out.println("Srednie odchylenie od wartosci: " + result.getStddev());
         System.out.println("Liczba zapytan o obciazenie: " + result.getStatistics().getQueries());
         System.out.println("Liczba migracji procesow: " + result.getStatistics().getMigrations());
+        System.out.println("Ilosc przeciazen procesora: " + result.getStatistics().getOverloads());
         System.out.println();
     }
 }

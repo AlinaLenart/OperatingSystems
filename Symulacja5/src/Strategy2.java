@@ -3,7 +3,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class Strategy2 {
+public class Strategy2 { //default
     private static final Random random = new Random();
 
     public static void assignTask(Task task, Processor[] processors, double p, Statistics stats) {

@@ -12,16 +12,15 @@ import java.util.Random;
 public class LoadBalancingSimulation {
     private static final Random random = new Random();
 
-    public static SimulationResult runSimulation(Processor[] processors, int numTasks, int deltaT, double p, double r, int maxArrivalTime, int maxExecutionTime,  int maxTries, Strategy strategy) {
+    public static SimulationResult runSimulation(List<Task> list, Processor[] processors, int numTasks, int deltaT, double p, double r, int maxArrivalTime, int maxExecutionTime,  int maxTries, Strategy strategy) {
         Statistics stats = new Statistics();
         List<Task> tasksList = new ArrayList<>();
 
-        for (int i = 0; i < numTasks; i++) {
-            // zadania o wymaganiach 1% - 6%, czasie trwania 1-maxExecutionTime, arrivalTime: 0-maxArrivalTime
-            Task task = new Task(random.nextDouble() * 0.05 + 0.01, random.nextInt(maxExecutionTime) + 1, random.nextInt(maxArrivalTime));
-            tasksList.add(task);
+        for(Task task : list) {
+            tasksList.add(new Task(task.getRequiredLoad(), task.getExecutionTime(), task.getArrivalTime()));
         }
 
+        double loadSum;
         double totalLoad = 0;
         int timeSteps = 0;
         int maxTime = maxExecutionTime + maxArrivalTime + 1;
@@ -47,9 +46,12 @@ public class LoadBalancingSimulation {
                 }
             }
 
-            double loadSum = 0;
+            loadSum = 0;
             for (Processor processor : processors) {
                 loadSum += processor.getCurrentLoad();
+                if (processor.getCurrentLoad() >= 1) {
+                    stats.incrementOverloads();
+                }
             }
 
             double averageLoad = loadSum / processors.length;
